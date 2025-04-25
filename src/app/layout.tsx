@@ -5,9 +5,9 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'James Nguyen | Senior UX Design Technologist',
+  title: 'James Nguyen | Senior UX Engineer',
   description:
-    'Portfolio showcasing my work as a Senior UX Design Technologist, specializing in design systems, frontend architecture, and developer experience.',
+    'Portfolio showcasing my work as a Senior UX Engineer, specializing in design systems, frontend architecture, and developer experience.',
 };
 
 export default function RootLayout({
