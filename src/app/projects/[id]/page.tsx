@@ -5,15 +5,11 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ChevronLeft } from 'lucide-react';
 
-interface ProjectPageProps {
-  params: {
-    id: string;
-  };
-}
+type Props = {
+  params: Promise<{ id: string }>;
+};
 
-export async function generateMetadata({
-  params,
-}: ProjectPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   const project = projects.find((p) => p.id === id);
 
@@ -35,7 +31,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function ProjectPage({ params }: ProjectPageProps) {
+export default async function ProjectPage({ params }: Props) {
   const { id } = await params;
   const project = projects.find((p) => p.id === id);
 

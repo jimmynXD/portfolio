@@ -8,9 +8,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className='flex flex-col items-center justify-center h-[60vh] text-center px-4'>
         <h1 className='text-5xl font-bold mb-6'>James Nguyen</h1>
-        <h2 className='text-2xl text-gray-600 mb-8'>
-          Senior UX Design Technologist
-        </h2>
+        <h2 className='text-2xl text-gray-600 mb-8'>Senior UX Engineer</h2>
         <p className='text-xl max-w-2xl mb-8'>
           I build exceptional user experiences through thoughtful design and
           technical innovation.
