@@ -122,7 +122,7 @@ export const projects: Project[] = [
     id: 'optimizely-governance',
     title: 'Experimenation Governance Dashboard & Enablement',
     challenge:
-      'Optimizely adoption stalled: developers implemented flags, but PMs/designers lacked a clear experimentation workflow—risking impression overages & feature creep.',
+      'Experimenation adoption stalled: developers implemented flags, but PMs/designers lacked a clear experimentation workflow—risking impression overages & feature creep.',
     solution:
       'A centralized experimentation governance dashboard that provides real-time visibility into all A/B tests and feature flag usage across the organization. The dashboard tracks how many teams are running experiments, the number and duration of active tests, and offers each team a personalized view to manage their own flags. Governance stakeholders have a comprehensive overview, while individual teams can turn flags on or off directly from their dashboard.',
     approach: [
