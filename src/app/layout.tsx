@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Outfit } from 'next/font/google';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const outfit = Outfit({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'James Nguyen | Senior UX Engineer',
@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang='en' className='scroll-smooth dark'>
       <body
-        className={`${inter.className} bg-white dark:bg-gray-900 text-gray-900 dark:text-white`}
+        className={`${outfit.className} bg-white dark:bg-gray-900 text-gray-900 dark:text-white`}
       >
         <div className='min-h-screen'>{children}</div>
       </body>

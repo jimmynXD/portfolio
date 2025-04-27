@@ -77,7 +77,7 @@ export const projects: Project[] = [
     keyTakeaway:
       "By marrying user‑centered research with modern full‑stack React, I transformed a fragmented developer experience into a cohesive platform that accelerates delivery and reduces cognitive load—a concrete example of Amazon's Think Big and Deliver Results.",
     imageUrl: '/devportal_2.webp',
-    team: 'Lead prototyper, collaborated with principal full stack engineer, QA, Backend, and content contributors from multiple teams.',
+    team: 'Lead prototyper, collaborated with principal engineer, QA, Backend, and content contributors from multiple teams.',
     toolkit: 'React 19, TypeScript, Design System, Markdown, Figma',
   },
   {
