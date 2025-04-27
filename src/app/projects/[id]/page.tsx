@@ -4,6 +4,7 @@ import { Metadata } from 'next';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ChevronLeft } from 'lucide-react';
+import Image from 'next/image';
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${project.title} | James Nguyen`,
-    description: project.situation,
+    description: project.challenge,
   };
 }
 
@@ -40,7 +41,7 @@ export default async function ProjectPage({ params }: Props) {
   }
 
   return (
-    <div className='max-w-4xl mx-auto px-4 py-12'>
+    <div className='max-w-7xl mx-auto px-4 py-12'>
       <div className='mb-8'>
         <Link href='/'>
           <Button variant='ghost' className='gap-2'>
@@ -53,12 +54,17 @@ export default async function ProjectPage({ params }: Props) {
       <header className='mb-12'>
         <h1 className='text-4xl font-bold mb-4'>{project.title}</h1>
         {project.imageUrl && (
-          <div className='relative w-full h-96 mb-8 rounded-lg overflow-hidden'>
-            <img
-              src={project.imageUrl}
-              alt={project.title}
-              className='object-cover w-full h-full'
-            />
+          <div className='bg-gray-700/50 rounded-lg'>
+            <div className='relative w-full h-96 mb-8 rounded-lg overflow-hidden'>
+              <Image
+                src={project.imageUrl}
+                alt={project.title}
+                fill
+                className='object-contain'
+                sizes='(max-width: 768px) 100vw, 700px'
+                priority
+              />
+            </div>
           </div>
         )}
       </header>
@@ -66,19 +72,38 @@ export default async function ProjectPage({ params }: Props) {
       <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
         <div className='md:col-span-2 space-y-12'>
           <section>
-            <h2 className='text-2xl font-semibold mb-4'>Situation</h2>
-            <p className='text-lg text-gray-700'>{project.situation}</p>
+            <h2 className='text-2xl font-semibold mb-4'>The Challenge</h2>
+            <p className='text-lg text-gray-700 dark:text-gray-300'>
+              {project.challenge}
+            </p>
           </section>
 
           <section>
-            <h2 className='text-2xl font-semibold mb-4'>Task</h2>
-            <p className='text-lg text-gray-700'>{project.task}</p>
+            <h2 className='text-2xl font-semibold mb-4'>The Solution</h2>
+            <p className='text-lg text-gray-700 dark:text-gray-300'>
+              {project.solution}
+            </p>
           </section>
 
           <section>
-            <h2 className='text-2xl font-semibold mb-4'>Action</h2>
+            <h2 className='text-2xl font-semibold mb-4'>The Impact</h2>
             <ul className='space-y-4'>
-              {project.action.map((item, index) => (
+              {project.impact.map((item, index) => (
+                <li key={index} className='flex items-start'>
+                  <span className='text-primary mr-2'>•</span>
+                  <span className='text-lg text-gray-700 dark:text-gray-300'>
+                    {item}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          {/* Impact section hidden until auth is set up
+          <section>
+            <h2 className='text-2xl font-semibold mb-4'>The Impact</h2>
+            <ul className='space-y-4'>
+              {project.impact.map((item, index) => (
                 <li key={index} className='flex items-start'>
                   <span className='text-primary mr-2'>•</span>
                   <span className='text-lg text-gray-700'>{item}</span>
@@ -86,41 +111,28 @@ export default async function ProjectPage({ params }: Props) {
               ))}
             </ul>
           </section>
-
-          <section>
-            <h2 className='text-2xl font-semibold mb-4'>Result</h2>
-            <ul className='space-y-4'>
-              {project.result.map((item, index) => (
-                <li key={index} className='flex items-start'>
-                  <span className='text-primary mr-2'>•</span>
-                  <span className='text-lg text-gray-700'>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </section>
+          */}
         </div>
 
         <div className='md:col-span-1'>
-          {project.metrics && (
-            <div className='bg-gray-50 p-6 rounded-lg'>
-              <h3 className='text-xl font-semibold mb-4'>Key Metrics</h3>
-              <div className='space-y-4'>
-                {project.metrics.map((metric, index) => (
-                  <div key={index} className='space-y-2'>
-                    <p className='font-medium'>{metric.kpi}</p>
-                    <div className='flex justify-between items-center'>
-                      <span className='text-gray-600'>Before</span>
-                      <span className='text-gray-600'>After</span>
-                    </div>
-                    <div className='flex justify-between items-center'>
-                      <span className='text-gray-700'>{metric.before}</span>
-                      <span className='text-primary font-semibold'>
-                        {metric.after}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
+          {(project.team || project.toolkit) && (
+            <div className='bg-gray-50 dark:bg-gray-800 p-6 rounded-lg space-y-4'>
+              {project.team && (
+                <div>
+                  <h3 className='text-xl font-semibold mb-2'>Team</h3>
+                  <p className='text-gray-700 dark:text-gray-300'>
+                    {project.team}
+                  </p>
+                </div>
+              )}
+              {project.toolkit && (
+                <div>
+                  <h3 className='text-xl font-semibold mb-2'>Toolkit</h3>
+                  <p className='text-gray-700 dark:text-gray-300'>
+                    {project.toolkit}
+                  </p>
+                </div>
+              )}
             </div>
           )}
 
@@ -131,7 +143,7 @@ export default async function ProjectPage({ params }: Props) {
                   href={project.demoUrl}
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='block w-full text-center bg-primary text-white py-2 px-4 rounded-lg hover:bg-primary/90 transition-colors'
+                  className='block w-full text-center bg-primary dark:bg-blue-900 dark:hover:bg-blue-800 text-white py-2 px-4 rounded-lg shadow-lg transition-colors'
                 >
                   View Demo
                 </a>
